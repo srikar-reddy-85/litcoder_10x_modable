@@ -3,9 +3,7 @@ const puppeteer = require('puppeteer');
 const fs = require('fs');
 const readline = require('readline');
 
-const openai = new OpenAI({
-    apiKey: "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",
-});
+let openai;
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -51,7 +49,10 @@ function formatFile(filePath) {
 }
 
 
-const methodA = async () => {
+const methodA = async (txtusername, txtpassword, apikey) => {
+    openai = new OpenAI({
+        apiKey: apikey,
+    });
     const browser = await puppeteer.launch({
         headless: false,
         defaultViewport: null
@@ -61,8 +62,11 @@ const methodA = async () => {
         const page = await browser.newPage();
         await page.goto('https://litcoder.azurewebsites.net');
 
-        await page.type('#txtusername', 'venkata.saisrikar2021@vitstudent.ac.in');
-        await page.type('#txtpassword', 'Gmail1234!@#$');
+        // await page.type('#txtusername', 'venkata.saisrikar2021@vitstudent.ac.in');
+        // await page.type('#txtpassword', 'Gmail1234!@#$');
+        await page.type('#txtusername', txtusername);
+        await page.type('#txtpassword', txtpassword);
+
         await page.waitForTimeout(1000);
         await page.click('.btn-primary');
 
@@ -113,34 +117,7 @@ const methodA = async () => {
                     // Extract the question text
                     const questionElement = await page.$('.editor-preview-full');
                     const question = await questionElement.evaluate(node => node.innerText);
-
-
-                    // Send the question to ChatGPT
-                    // Send the question to ChatGPT
                     try {
-                        // const answergpt = await sendQuestionToChatGPT(question);
-                        // console.log("Answer from ChatGPT: " + answergpt);
-
-                        // Check if answergpt is not undefined before writing to a file
-                        // if (answergpt !== undefined) {
-                        // fs.writeFileSync('javacode.txt', answergpt, 'utf8');
-                        // console.log("Answer written to javacode.txt");
-                        // await new Promise(resolve => {
-                        //     fs.writeFile('javacode.txt', answergpt, 'utf8', (err) => {
-                        //         if (err) throw err;
-                        //         resolve();
-                        //     });
-                        // });
-                        // fs.writeFileSync('javacode.txt', answergpt, 'utf8');
-                        // console.log("Answer written to javacode.txt");
-
-                        // Wait until the 'javacode.txt' file is fully written
-                        // await new Promise(resolve => {
-                        //     fs.writeFile('javacode.txt', answergpt, 'utf8', (err) => {
-                        //         if (err) throw err;
-                        //         resolve();
-                        //     });
-                        // });
 
                         // Format the 'code.txt' file
                         formatFile('code.txt');
@@ -158,18 +135,10 @@ const methodA = async () => {
                         const lines = textFileContent.split('\n');
 
                         for (const line of lines) {
-                            // await page.keyboard.type(line);
-                            // await page.keyboard.press('Enter');
-                            // await page.keyboard.down('Shift'); // Hold down the Shift key
-                            // await page.keyboard.press('Tab'); // Press the 'Tab' key (simulating Shift + Tab)
-                            // await page.keyboard.up('Shift'); // Release the Shift key
                             await page.keyboard.type(line);
                             await page.keyboard.press('Enter');
                             // await page.keyboard.press('Backspace');
                         }
-                        // } else {
-                        //     console.error('ChatGPT response is undefined.');
-                        // }
                     } catch (error) {
                         console.error(error);
                     } finally {
@@ -190,7 +159,10 @@ const methodA = async () => {
 };
 
 // Define method B
-const methodB = async () => {
+const methodB = async (txtusername, txtpassword, apikey) => {
+    openai = new OpenAI({
+        apiKey: apikey,
+    });
     const browser = await puppeteer.launch({
         headless: false,
         defaultViewport: null
@@ -199,8 +171,10 @@ const methodB = async () => {
     const page = await browser.newPage();
     await page.goto('https://litcoder.azurewebsites.net');
 
-    await page.type('#txtusername', 'venkata.saisrikar2021@vitstudent.ac.in');
-    await page.type('#txtpassword', 'Gmail1234!@#$');
+    // await page.type('#txtusername', 'venkata.saisrikar2021@vitstudent.ac.in');
+    // await page.type('#txtpassword', 'Gmail1234!@#$');
+    await page.type('#txtusername', txtusername);
+    await page.type('#txtpassword', txtpassword);
     await page.waitForTimeout(1000);
     await page.click('.btn-primary');
 
@@ -280,16 +254,9 @@ const methodB = async () => {
                                 resolve();
                             });
                         });
-
                         // Format the 'code.txt' file
                         formatFile('code.txt');
-
-
-
-                        // Make it wait until the 'javacode.txt' is finished writing 
-                        // then perform below operations
-                        // await page.click('.ace_content');
-                        // await page.keyboard.press('Enter');
+                        // Make it wait until the 'code.txt' is finished writing 
                         await page.click('.ace_content');
                         await page.keyboard.down('Control');
                         await page.keyboard.press('A'); // Select all
@@ -328,13 +295,23 @@ const methodB = async () => {
 };
 
 
-rl.question('if you want to insert your answer into question type "A" else you want chat-gpt to answer all questions type "B" ', (method) => {
-    if (method.toUpperCase() === 'A') {
-        methodA();
-    } else if (method.toUpperCase() === 'B') {
-        methodB();
-    } else {
-        console.log('Invalid method selection.');
-        rl.close();
-    }
+rl.question('Enter your OpenAI API key: ', async (apiKey) => {
+
+    rl.question('Enter your #txtusername: ', async (txtusername) => {
+        // Ask the user to input their #txtpassword
+        rl.question('Enter your #txtpassword: ', async (txtpassword) => {
+            // Now that you have the apiKey, txtusername, and txtpassword, you can call methodA or methodB.
+            rl.question('If you want to insert your answer into a question, type "A". If you want ChatGPT to answer all questions, type "B": ', (method) => {
+                if (method.toUpperCase() === 'A') {
+                    methodA(txtusername, txtpassword, apiKey);
+                } else if (method.toUpperCase() === 'B') {
+                    methodB(txtusername, txtpassword, apiKey);
+                } else {
+                    console.log('Invalid method selection.');
+                    rl.close();
+                }
+            });
+        });
+    });
+
 });
