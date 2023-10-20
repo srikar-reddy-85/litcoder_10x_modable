@@ -62,8 +62,7 @@ const methodA = async (txtusername, txtpassword, apikey) => {
         const page = await browser.newPage();
         await page.goto('https://litcoder.azurewebsites.net');
 
-        // await page.type('#txtusername', 'venkata.saisrikar2021@vitstudent.ac.in');
-        // await page.type('#txtpassword', 'Gmail1234!@#$');
+
         await page.type('#txtusername', txtusername);
         await page.type('#txtpassword', txtpassword);
 
@@ -171,8 +170,6 @@ const methodB = async (txtusername, txtpassword, apikey) => {
     const page = await browser.newPage();
     await page.goto('https://litcoder.azurewebsites.net');
 
-    // await page.type('#txtusername', 'venkata.saisrikar2021@vitstudent.ac.in');
-    // await page.type('#txtpassword', 'Gmail1234!@#$');
     await page.type('#txtusername', txtusername);
     await page.type('#txtpassword', txtpassword);
     await page.waitForTimeout(1000);

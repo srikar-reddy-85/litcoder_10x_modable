@@ -1,6 +1,6 @@
 {
   "name": "litcoder_10xv2",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "litcoder_10x_modable",
   "main": "index.js",
   "publishConfig": {
@@ -20,5 +20,10 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "files": [
+    "code.txt",
+    "index.js",
+    "README.md"
+  ]
 }
