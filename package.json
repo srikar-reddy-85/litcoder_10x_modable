@@ -1,8 +1,11 @@
 {
   "name": "litcoder_10xv2",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "litcoder_10x_modable",
   "main": "index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "start": "node index.js"
   },
