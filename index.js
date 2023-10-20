@@ -142,8 +142,8 @@ const methodA = async () => {
                         //     });
                         // });
 
-                        // Format the 'javacode.txt' file
-                        formatFile('javacode.txt');
+                        // Format the 'code.txt' file
+                        formatFile('code.txt');
 
                         //make it wait until the javacode.txt is finished writing 
                         //then perform below operations
@@ -154,7 +154,7 @@ const methodA = async () => {
                         await page.keyboard.press('Backspace'); // Delete selected text
                         await page.keyboard.press('Enter');
 
-                        const textFileContent = fs.readFileSync('javacode.txt', 'utf8');
+                        const textFileContent = fs.readFileSync('code.txt', 'utf8');
                         const lines = textFileContent.split('\n');
 
                         for (const line of lines) {
@@ -252,7 +252,7 @@ const methodB = async () => {
             await resume.click();
             await page.waitForTimeout(4000);
             for (let questionNumber = 0; questionNumber < 2; questionNumber++) {
-                fs.writeFileSync('javacode.txt', '', 'utf8');
+                fs.writeFileSync('code.txt', '', 'utf8');
                 if (questionNumber === 1) {
                     await page.click('#btnNext');
                 }
@@ -270,19 +270,19 @@ const methodB = async () => {
 
                     // Check if answergpt is not undefined before writing to a file
                     if (answergpt !== undefined) {
-                        fs.writeFileSync('javacode.txt', answergpt, 'utf8');
-                        console.log("Answer written to javacode.txt");
+                        fs.writeFileSync('code.txt', answergpt, 'utf8');
+                        console.log("Answer written to code.txt");
 
-                        // Wait until the 'javacode.txt' file is fully written
+                        // Wait until the 'code.txt' file is fully written
                         await new Promise(resolve => {
-                            fs.writeFile('javacode.txt', answergpt, 'utf8', (err) => {
+                            fs.writeFile('code.txt', answergpt, 'utf8', (err) => {
                                 if (err) throw err;
                                 resolve();
                             });
                         });
 
-                        // Format the 'javacode.txt' file
-                        formatFile('javacode.txt');
+                        // Format the 'code.txt' file
+                        formatFile('code.txt');
 
 
 
@@ -297,7 +297,7 @@ const methodB = async () => {
                         await page.keyboard.press('Backspace'); // Delete selected text
                         await page.keyboard.press('Enter');
 
-                        const textFileContent = fs.readFileSync('javacode.txt', 'utf8');
+                        const textFileContent = fs.readFileSync('code.txt', 'utf8');
                         const lines = textFileContent.split('\n');
 
                         for (const line of lines) {
