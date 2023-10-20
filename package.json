@@ -4,7 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "openai": "^4.12.4",
+    "puppeteer": "^21.3.8",
+    "readline": "^1.0.0"
   },
   "keywords": [],
   "author": "",
