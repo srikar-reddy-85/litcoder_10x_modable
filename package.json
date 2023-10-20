@@ -1,7 +1,7 @@
 {
   "name": "litcoder_10xv2",
   "version": "1.0.0",
-  "description": "",
+  "description": "litcoder_10x_modable",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
