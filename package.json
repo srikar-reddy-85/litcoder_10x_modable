@@ -6,6 +6,10 @@
   "scripts": {
     "start": "node index.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tonystark-85/litcoder_10x_modable"
+  },
   "dependencies": {
     "openai": "^4.12.4",
     "puppeteer": "^21.3.8",
