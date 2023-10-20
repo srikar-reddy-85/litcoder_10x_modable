@@ -5,7 +5,7 @@
 #once code started to execute its gonna complete your lab question using chatgpt automatically you dont have to touch one thing everything can be done through command line interface
 
 #steps to use:
-1)first make sure you have installed the required tools 
+1)first make sure you have installed the required tools \n
 2)tools you need git(installation: https://youtu.be/-Bfx-v5mIDo?si=rhzTbAUZKnsV33WG) , node.js(installation: https://youtu.be/EIzdQxMXcrc?si=2mVgN8Cw1vnTjmXO)
 3)then run this command where you want to use this repository:(git clone https://github.com/tonystark-85/litcoder_10x_modable/) click enter
 4)then all the files will be installed then open this file in vs code open terminal and type command: (npm i) click enter
